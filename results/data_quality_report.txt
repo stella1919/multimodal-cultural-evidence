@@ -1,0 +1,39 @@
+Total objects: 489
+Selected processed objects: 300
+Objects with images: 438
+Objects with public-domain flag: 438
+Objects with cultural metadata: 290
+Objects with geographic metadata: 201
+Objects with temporal metadata: 485
+Duplicate count removed: 0
+
+                 column  missing_count  missing_percentage
+              object_id              0            0.000000
+                  title              0            0.000000
+            object_name              3            0.613497
+                culture            199           40.695297
+                 period            339           69.325153
+             date_begin              0            0.000000
+               date_end              0            0.000000
+                country            308           62.985685
+                 region            403           82.413088
+                   city            456           93.251534
+              geography            399           81.595092
+                 medium              0            0.000000
+         classification             33            6.748466
+            description              1            0.204499
+                   tags            129           26.380368
+              image_url             51           10.429448
+        image_small_url             51           10.429448
+             object_url              0            0.000000
+       is_public_domain              0            0.000000
+                 source              0            0.000000
+        search_keywords              0            0.000000
+             department              0            0.000000
+                dynasty            476           97.341513
+                  reign            480           98.159509
+            credit_line              1            0.204499
+cultural_context_reason              0            0.000000
+       cultural_context              0            0.000000
+     text_for_embedding              0            0.000000
+               mid_year              4            0.817996

@@ -1,0 +1,17 @@
+{
+  "run_date": "2026-09-11T00:38:58.198783+00:00",
+  "number_raw_objects": 489,
+  "number_processed_objects": 300,
+  "number_images": 300,
+  "context_distribution": {
+    "Other": 265,
+    "South_Asia": 26,
+    "East_Asia": 5,
+    "Himalayan": 4
+  },
+  "visual_model": "OpenCLIP ViT-B-32",
+  "text_model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "random_seed": 42,
+  "python_version": "3.14.2",
+  "platform": "macOS-15.7.5-arm64-arm-64bit-Mach-O"
+}

@@ -1,0 +1,15 @@
+pandas
+numpy
+requests
+tqdm
+matplotlib
+scikit-learn
+networkx
+plotly
+streamlit
+pillow
+torch
+sentence-transformers
+open-clip-torch
+umap-learn
+
