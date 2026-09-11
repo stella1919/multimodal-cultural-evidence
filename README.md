@@ -1,54 +1,117 @@
-# Multimodal Cultural Evidence Modeling and Computational Analysis
+<div align="center">
 
-**Cross-cultural Buddhist Object Dataset — Pilot**
+# Multimodal Cultural Evidence Explorer
 
-This repository is a reproducible computational-humanities pilot for structuring museum records as multimodal cultural evidence and exploring potential cross-cultural patterns. It extends interests in cultural heritage and multimodal human-centered research toward computational cultural analysis.
+### 多模态文化证据建模与计算分析
 
-## Research motivation
+**A reproducible computational-humanities pilot for discovering visual, semantic, temporal, and contextual patterns across cultural objects.**
 
-Digitized cultural collections make it possible to combine computer vision, NLP, network analysis, and temporal analysis across larger corpora. Computational methods can surface candidate relationships that merit close humanistic reading, but they do not replace historians or prove cultural transmission. This project therefore separates computational observation from possible humanities interpretation.
+[![Research](https://img.shields.io/badge/Research-Computational%20Humanities-172554?style=for-the-badge)](https://github.com/stella1919/multimodal-cultural-evidence)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Explorer-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![License](https://img.shields.io/badge/License-MIT-0F766E?style=for-the-badge)](LICENSE)
+
+[English](#overview) · [中文](#项目概览) · [Quick Start](#quick-start) · [快速运行](#快速运行)
+
+</div>
+
+---
+
+## Overview
+
+This repository presents a reproducible workflow for turning museum records into **traceable multimodal cultural evidence**. It combines images, structured metadata, dates, geography, cultural descriptors, visual embeddings, multilingual text embeddings, similarity analysis, network analysis, and temporal analysis.
+
+The goal is not to automate historical interpretation. The system surfaces computationally interesting patterns and candidate cases for closer humanistic reading.
+
+### Pilot snapshot
+
+| Objects | Images | Object pairs | Cross-context pairs |
+|:---:|:---:|:---:|:---:|
+| **300** | **300** | **44,850** | **9,529** |
+
+**Source:** The Metropolitan Museum of Art Collection API · **Focus:** cross-cultural Buddhist object records · **Status:** reproducible research prototype
 
 ## Research questions
 
-- **RQ1:** What computable visual and semantic similarities and differences appear across cultural contexts?
-- **RQ2:** To what extent are visual similarities aligned with or decoupled from semantic similarities?
-- **RQ3:** Can temporal, geographic, and cultural metadata reveal potential cross-regional associations and patterns of cultural evolution?
+1. What visual and semantic similarities appear across cultural contexts?
+2. When do visual similarity and cultural semantics align—or diverge?
+3. Can temporal, geographic, and contextual metadata reveal candidate cross-regional patterns?
 
-## Conceptual framework
+## Conceptual pipeline
 
 ```mermaid
-flowchart TD
- A[Multimodal Cultural Data] --> B[Images + Text + Metadata + Time + Geography]
- B --> C[Python / Pandas / NumPy Data Processing]
- C --> D[Visual Embedding + Text Embedding + Temporal/Contextual Evidence]
- D --> E[Multimodal Cultural Evidence Modeling]
- E --> F[Similarity + Clustering + Network + Temporal Analysis]
- F --> G[Cross-cultural Pattern Discovery]
- G --> H[Humanities Interpretation]
+flowchart LR
+    A[ Museum records ] --> B[ Clean + validate ]
+    B --> C[ Images + text + metadata ]
+    C --> D[ Visual / multilingual embeddings ]
+    D --> E[ Similarity + clustering ]
+    E --> F[ Networks + temporal analysis ]
+    F --> G[ Candidate patterns ]
+    G --> H[ Humanities interpretation ]
 ```
 
-## Data and licensing
+## 项目概览
 
-Metadata is collected from [The Metropolitan Museum of Art Collection API](https://metmuseum.org/art/collection). The repository preserves object URLs, source fields, and the museum's `isPublicDomain` flag. Images are downloaded only when an image URL is available and are intended for research and educational demonstration under the source institution's open-access terms. This classification and the Nepal→Himalayan assignment are analytical simplifications for the pilot, not definitive cultural taxonomies. See `docs/dataset_card.md`.
+本项目将博物馆对象记录中的图像、文本、年代、地域与文化属性组织为**可追溯的多模态文化证据**，并通过视觉表征、多语言文本嵌入、相似度、聚类、网络和时间分析，探索跨文化对象之间可能存在的模式。
 
-## Methods and pipeline
+计算结果只用于发现值得进一步阅读的候选关系，不等同于历史因果，也不直接证明文化传播。
 
-1. `collect_data.py`: keyword search, object-ID de-duplication, cached metadata, retries, and raw CSV.
-2. `clean_data.py`: missingness, URL/image eligibility, context categorization, structured metadata textualization, and pilot selection.
-3. `download_images.py`: Pillow-validated local images with error log.
-4. `image_embedding.py` and `text_embedding.py`: frozen OpenCLIP and multilingual MiniLM feature extraction.
-5. `multimodal_analysis.py`: cosine similarity, PCA/UMAP fallback, cross-modal alignment, and exploratory KMeans.
-6. `network_analysis.py` and `temporal_analysis.py`: top-k similarity network, centrality, and century summaries.
-7. `app/app.py`: Streamlit Cultural Evidence Explorer.
+### 数据快照
 
-The multimodal baseline is `concat(0.5 * normalized_visual, 0.5 * normalized_text)`. Weights and random seed 42 are configurable in `src/config.py`. No embedding is synthetic; if a model cannot run, the stage fails clearly rather than fabricating results.
+- **300** 条处理后的文化对象记录
+- **300** 张已验证示例图像
+- **44,850** 个对象对
+- **9,529** 个跨语境对象对
+- 数据来源：The Metropolitan Museum of Art Collection API
+
+## Featured outputs
+
+- [Interactive Streamlit explorer](app/app.py)
+- [Cross-modal alignment](figures/cross_modal_alignment.png)
+- [Multimodal embedding space](figures/multimodal_embedding_space.png)
+- [Similarity network](figures/cultural_similarity_network.png)
+- [Generated results summary](results/results_summary.md)
+- [Dataset card and limitations](docs/dataset_card.md)
+
+![Cross-modal alignment](figures/cross_modal_alignment.png)
 
 ## Quick start
 
 ```bash
+git clone https://github.com/stella1919/multimodal-cultural-evidence.git
+cd multimodal-cultural-evidence
+
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
+streamlit run app/app.py
+```
+
+The compact image archive is expanded automatically when the app starts. Model weights are downloaded on first use; CPU is supported, and Apple MPS is used when available.
+
+## 快速运行
+
+```bash
+git clone https://github.com/stella1919/multimodal-cultural-evidence.git
+cd multimodal-cultural-evidence
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+streamlit run app/app.py
+```
+
+如果浏览器没有自动打开，请访问：
+
+```
+http://localhost:8501
+```
+
+## Reproducible pipeline
+
+```bash
 PYTHONPATH=. python -m src.collect_data --test
 PYTHONPATH=. python -m src.collect_data --max-objects 500
 PYTHONPATH=. python -m src.clean_data --max-records 300
@@ -59,27 +122,42 @@ PYTHONPATH=. python -m src.multimodal_analysis
 PYTHONPATH=. python -m src.network_analysis
 PYTHONPATH=. python -m src.temporal_analysis
 PYTHONPATH=. python -m src.reporting
-streamlit run app/app.py
 ```
 
-Model weights are downloaded by the model libraries on first use. CPU is supported; Apple MPS is used when available. Figures and results are generated from the actual run and should not be pre-filled with claims.
+## Repository map
 
-## Main outputs
+| Path | Purpose |
+|---|---|
+| `app/` | Streamlit interactive explorer |
+| `src/` | Data collection, cleaning, embeddings, analysis |
+| `data/` | Raw and processed metadata, embeddings, compact image archive |
+| `results/` | Similarity tables, network outputs, summaries |
+| `figures/` | Publication-style exploratory figures |
+| `docs/` | Dataset card, methods, and project notes |
+| `notebooks/` | Reproducible exploratory notebooks |
 
-`data/processed/cultural_objects.csv`, embedding `.npy` files with index CSVs, quality reports, top-pair tables, cross-modal cases, clustering evaluation, network tables, temporal summaries, `results/results_summary.md`, and figures including embedding spaces, alignment, clustering, network, and temporal distribution.
+## Methods
 
-### Generated snapshot
+- **Visual representation:** frozen OpenCLIP features
+- **Text representation:** multilingual sentence-transformer embeddings
+- **Multimodal baseline:** `0.5 × normalized visual + 0.5 × normalized text`
+- **Analysis:** cosine similarity, PCA/UMAP fallback, KMeans, graph centrality, temporal summaries
+- **Reproducibility:** fixed random seed, cached metadata, transparent filtering, explicit quality reports
 
-The validated local run contains 489 raw records, 300 processed records, 300 images, 44,850 object pairs, 9,529 cross-context pairs, and context counts of Other=265, South_Asia=26, East_Asia=5, Himalayan=4. The imbalance is reported rather than corrected by synthetic balancing. The generated summary is authoritative: `results/run_summary.json`.
+## Data, licensing, and limits
 
-## Limitations and ethics
+Metadata is collected from [The Metropolitan Museum of Art Collection API](https://metmuseum.org/art/collection). The repository preserves source URLs and the museum's `isPublicDomain` field. Image use follows the source institution's open-access terms for research and educational demonstration.
 
-The Met collection is not a complete representation of global cultural heritage. Search terms, institutional collecting history, uneven metadata, missing dates/images, and simplified context labels create selection and measurement bias. Similarity means computational proximity; it should not be interpreted as evidence of direct historical transmission. Candidate bridge objects are not historical intermediaries. Geographic analysis is category-level unless reliable coordinates are available.
+The Met collection is not a complete representation of global cultural heritage. Search terms, collecting history, missing metadata, and simplified context labels create selection and measurement bias. Similarity means computational proximity—not direct historical transmission.
 
-## Future work
+## Independent research note
 
-Wikidata alignment, Europeana and additional museum collections, knowledge-graph construction, geospatial modeling, diachronic analysis, and human-in-the-loop domain-expert validation are planned extensions.
+This is an independent computational-humanities research project built around cultural heritage, multimodal analysis, and human-centered interpretation.
 
-## Author
+---
 
-Independent research project in computational humanities, building on cultural-heritage and multimodal human-centered research.
+<div align="center">
+
+**Observe patterns · document evidence · interpret carefully**
+
+</div>
