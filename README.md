@@ -82,4 +82,4 @@ Wikidata alignment, Europeana and additional museum collections, knowledge-graph
 
 ## Author
 
-Research project for doctoral-application portfolio development in computational humanities, building on cultural-heritage and multimodal human-centered research.
+Independent research project in computational humanities, building on cultural-heritage and multimodal human-centered research.
